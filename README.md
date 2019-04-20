@@ -7,7 +7,7 @@
          /////////////\/             \//////\               //\/
         //\\\\\\\\\//\/               \\\\\//\             //\/
        //\/       //\/                     \//\           //\/
-      //\/       //\/           ///\      //\\/          //\/       //\   
+      //\/       //\/           ///\      //\\/          //\/       //\
      ///\      ///\/            \/////////\\/           /////////////\/
      \\\/      \\\/              \\\\\\\\\/             \\\\\\\\\\\\\/             Present by Richard.Hu
 </pre>
@@ -15,7 +15,7 @@
 # HslCommunication
 HslCommnication.dll
 
-![Build status](https://img.shields.io/badge/Build-Success-green.svg) [![NuGet Status](https://img.shields.io/nuget/v/HslCommunication.svg)](https://www.nuget.org/packages/HslCommunication/) ![NuGet Download](https://img.shields.io/nuget/dt/HslCommunication.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/HslCommunication/community) [![NetFramework](https://img.shields.io/badge/Language-C%23%207.0-orange.svg)](https://blogs.msdn.microsoft.com/dotnet/2016/08/24/whats-new-in-csharp-7-0/) [![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2017-red.svg)](https://www.visualstudio.com/zh-hans/) ![License status](https://img.shields.io/badge/License-LGPL3.0-yellow.svg) ![copyright status](https://img.shields.io/badge/CopyRight-Richard.Hu-brightgreen.svg) 
+![Build status](https://img.shields.io/badge/Build-Success-green.svg) [![NuGet Status](https://img.shields.io/nuget/v/HslCommunication.svg)](https://www.nuget.org/packages/HslCommunication/) ![NuGet Download](https://img.shields.io/nuget/dt/HslCommunication.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/HslCommunication/community) [![NetFramework](https://img.shields.io/badge/Language-C%23%207.0-orange.svg)](https://blogs.msdn.microsoft.com/dotnet/2016/08/24/whats-new-in-csharp-7-0/) [![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2019-red.svg)](https://www.visualstudio.com/zh-hans/) ![License status](https://img.shields.io/badge/License-LGPL3.0-yellow.svg) ![copyright status](https://img.shields.io/badge/CopyRight-Richard.Hu-brightgreen.svg) 
 
 HslCommunication.jar
 
@@ -30,6 +30,10 @@ HslCommunication.py
 
 ## Official Website
 Webside: [http://www.hslcommunication.cn/](http://www.hslcommunication.cn/)
+
+BBS: [http://bbs.hslcommunication.cn/](http://bbs.hslcommunication.cn/)
+
+API: [http://api.hslcommunication.cn/](http://api.hslcommunication.cn/)
 
 Gitter[talk with me]: [https://gitter.im/HslCommunication/community](https://gitter.im/HslCommunication/community)
 
@@ -69,7 +73,7 @@ Install-Package HslCommunication
 ```
 
 ## Environment
-* IDE: **Visual Studio 2017** 
+* IDE: **Visual Studio 2019** 
 * java：**Intellij Idea 2018.4**
 * python: **Visual Studio Code**
 
@@ -176,6 +180,9 @@ int main()
 }
 ```
 
+If you want to communication in your mobile phone application, you also can use C# code by xamarin, you can download HslAppDemo to test
+[HslAppDemo.apk](https://github.com/dathlin/HslCommunication/raw/master/Download/com.companyname.HslAppDemo-Signed.apk)
+
 
 Another feature of this project is support for cross-language communication support. You can build a C # background server that supports Windows desktop application 
 and Web background, and Android phone-side, Python programs, Java programs to communicate. server side code:
@@ -244,11 +251,14 @@ will be used in English and Chinese double annotation, thank you for your unders
 This component provides the Java version, for the. NET version of the castration version, removed all the server function code, 
 retained part of the client function code, convenient and plc, device data interaction, and C # program data interaction, 
 this jar component is suitable for the development of Android, easy to build a. NET Server + Windows Client + asp.net client + J2EE client + Java Client + Android client.
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/java_demo.png)
 
 ## HslCommunication.py Summary 
 This component provides a Python version, a castration version of the. NET version, removes all server function codes, retains some of the client function code, 
 facilitates data interaction with PLC, devices, and data interaction with C # programs for cross-platform operation
 
+## Xamarin.Android Demo
+![Picture](https://raw.githubusercontent.com/dathlin/HslCommunication/master/imgs/appDemo.png)
 
 ## Contribution
 Warmly welcome suggestions for improvement of the Code of this project, you can launch pull Request.

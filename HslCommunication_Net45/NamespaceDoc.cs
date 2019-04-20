@@ -669,6 +669,26 @@ namespace HslCommunication
     ///             <item>SoftBasic新增从字符串计算MD5码的方法。</item>
     ///         </list>
     ///     </revision>
+    ///     <revision date="2019-4-4" version="6.0.4" author="Richard.Hu">
+    ///         <list type="bullet">
+    ///             <item>修复java的NetPushClient掉线重复连接的bug。</item>
+    ///             <item>发布java的全新测试Demo。</item>
+    ///             <item>Kuka机器人Demo修改帮助链接。</item>
+    ///             <item>西门子新增s200的以太网模块连接对象。</item>
+    ///             <item>修复文件引擎在上传文件时意外失败，服务器仍然识别为成功的bug。</item>
+    ///         </list>
+    ///     </revision>
+    ///     <revision date="2019-4-4" version="6.1.0" author="Richard.Hu">
+    ///         <list type="bullet">
+    ///             <item>修复日志存储自身异常时，时间没有初始化的bug。</item>
+    ///             <item>NetworkBase: 新增UseSynchronousNet属性，默认为true，通过同步的网络进行读写数据，异步手动设置为false。</item>
+    ///             <item>修复西门子的读写字符串的bug。</item>
+    ///             <item>添加KeyenceNanoSerial以支持基恩士Nano系列串口通信。</item>
+    ///             <item>其他的代码优化。</item>
+    ///             <item>发布一个基于xamarin的安卓测试demo。</item>
+    ///             <item>发布官方论坛： http://bbs.hslcommunication.cn/ </item>
+    ///         </list>
+    ///     </revision>
     /// </revisionHistory>
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute( )]
     public class NamespaceDoc
@@ -694,4 +714,9 @@ namespace HslCommunication
     // 3. 工业网关的深入集成
     // 4. HslCommunication官网集成项目发布接收及案例展示平台
     // 5. 研究PyQt的界面开发和实现
+
+
+
+    // bugs
+    // 文件引擎，上传文件的时候，如果客户端上传到一半，直接关闭客户端，服务器端会认为是成功的
 }

@@ -141,17 +141,17 @@ namespace HslCommunication.Profinet.Siemens
         /// <param name="ipAddress">Ip地址 -> IpAddress</param>
         private void Initialization( SiemensPLCS siemens, string ipAddress )
         {
-            WordLength = 2;
-            IpAddress = ipAddress;
-            Port = 102;
-            CurrentPlc = siemens;
+            WordLength   = 2;
+            IpAddress    = ipAddress;
+            Port         = 102;
+            CurrentPlc   = siemens;
 
             switch (siemens)
             {
-                case SiemensPLCS.S1200: plcHead1[21] = 0; break;
-                case SiemensPLCS.S300: plcHead1[21] = 2; break;
-                case SiemensPLCS.S400: plcHead1[21] = 3; plcHead1[17] = 0x00; break;
-                case SiemensPLCS.S1500: plcHead1[21] = 0; break;
+                case SiemensPLCS.S1200:    plcHead1[21] = 0; break;
+                case SiemensPLCS.S300:     plcHead1[21] = 2; break;
+                case SiemensPLCS.S400:     plcHead1[21] = 3; plcHead1[17] = 0x00; break;
+                case SiemensPLCS.S1500:    plcHead1[21] = 0; break;
                 case SiemensPLCS.S200Smart:
                     {
                         plcHead1 = plcHead1_200smart;
@@ -411,7 +411,6 @@ namespace HslCommunication.Profinet.Siemens
             OperateResult<byte[]> read = ReadFromCoreServer( command.Content );
             if (!read.IsSuccess) return read;
 
-
             // 分析结果 -> Analysis results
             int receiveCount = 0;
             for (int i = 0; i < length.Length; i++)
@@ -443,7 +442,7 @@ namespace HslCommunication.Profinet.Siemens
             }
             else
             {
-                return new OperateResult<byte[]>( ) { ErrorCode = read.ErrorCode, Message = StringResources.Language.SiemensDataLengthCheckFailed };
+                return new OperateResult<byte[]>( read.ErrorCode, StringResources.Language.SiemensDataLengthCheckFailed );
             }
         }
         
@@ -606,7 +605,7 @@ namespace HslCommunication.Profinet.Siemens
         #endregion
 
         #region ReadWrite String
-        
+
         /// <summary>
         /// 向设备中写入字符串，编码格式为ASCII
         /// </summary>
@@ -624,7 +623,15 @@ namespace HslCommunication.Profinet.Siemens
             byte[] buffer = Encoding.ASCII.GetBytes( value );
             if (CurrentPlc != SiemensPLCS.S200Smart)
             {
-                return Write( address, BasicFramework.SoftBasic.SpliceTwoByteArray( new byte[] { 254, (byte)buffer.Length }, buffer ) );
+                // need read one time
+                OperateResult<byte[]> readLength = Read( address, 2 );
+                if (!readLength.IsSuccess) return readLength;
+
+                if (readLength.Content[0] == 255) return new OperateResult<string>( "Value in plc is not string type" );
+                if (readLength.Content[0] == 0) readLength.Content[0] = 254; // allow to create new string
+                if (value.Length > readLength.Content[0]) return new OperateResult<string>( "String length is too long than plc defined" );
+
+                return Write( address, BasicFramework.SoftBasic.SpliceTwoByteArray( new byte[] { readLength.Content[0], (byte)buffer.Length }, buffer ) );
             }
             else
             {
@@ -644,7 +651,7 @@ namespace HslCommunication.Profinet.Siemens
                 var read = Read( address, 2 );
                 if (!read.IsSuccess) return OperateResult.CreateFailedResult<string>( read );
 
-                if (read.Content[0] != 254) return new OperateResult<string>( "Value in plc is not string type" );
+                if (read.Content[0] == 0 || read.Content[0] == 255) return new OperateResult<string>( "Value in plc is not string type" );    // max string length can't be zero
 
                 var readString = Read( address, (ushort)(2 + read.Content[1]) );
                 if (!readString.IsSuccess) return OperateResult.CreateFailedResult<string>( readString );
